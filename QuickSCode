@@ -1,0 +1,54 @@
+import java.util.*;
+import java.util.Map.Entry;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import jade.domain.introspection.GetValue;
+
+import java.util.stream.IntStream;
+import java.util.stream.LongStream;
+
+public class tests {
+    static void quick_sort(int[] arr, int low, int high) {
+        if(low<high) {
+        	int part= partition(arr, low, high);
+        	quick_sort(arr, low, part-1);
+        	quick_sort(arr, part+1, high);
+        }
+    }
+    private static int partition(int[] arr, int low, int high) {
+			int pivot=arr[low];
+			int i=low;
+			int j=high;
+			while(i<j) {
+				while( i<=high && pivot>arr[i]) {
+					i++;
+				}
+				while(pivot<arr[j] && j>=low) {
+					j--;
+				}
+				if(i<j) {
+					swap(arr, i, j);
+				}
+			}
+			swap(arr, i, j);
+			
+		return j;
+	}
+	private static void swap(int[] arr, int i, int j) {
+		int temp=arr[i];
+		arr[i]=arr[j];
+		arr[j]=temp;
+		
+	}
+	public static void main(String args[]) {
+        int arr[] = {13, 46, 24, 52, 20, 9};
+        int n = arr.length;
+        quick_sort(arr, 0, n-1);
+        for(int k: arr) {
+        	System.out.println(k+" ");
+        }
+    }
+
+} 
